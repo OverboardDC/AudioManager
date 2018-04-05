@@ -1,0 +1,7 @@
+com\training\audiomanager\entity\Genre.class
+com\training\audiomanager\dao\MusicTrackDao.class
+com\training\audiomanager\entity\Performer.class
+com\training\audiomanager\service\GenreService.class
+com\training\audiomanager\entity\MusicTrack.class
+com\training\audiomanager\service\PerformerService.class
+com\training\audiomanager\service\MusicTrackService.class
