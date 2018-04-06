@@ -6,6 +6,7 @@ import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.service.GenreService;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.PageConstants;
+import com.training.audiomanager.util.ParameterConstants;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +22,7 @@ public class AddGenre implements Command {
     public String execute(HttpServletRequest request) {
         InputUtil inputUtil = new InputUtil();
 
-        String genreName = inputUtil.inputStringValue(request, "genreName");
+        String genreName = inputUtil.inputStringValue(request, ParameterConstants.GENRE_NAME);
         if(!inputUtil.isValid()){
             return PageConstants.INDEX_REDIRECT;
         }

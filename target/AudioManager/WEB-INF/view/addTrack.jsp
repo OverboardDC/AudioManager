@@ -31,8 +31,8 @@
                         </c:forEach>
                     </datalist>
 
-                    <p style="color: red">${sessionScope.genre}</p>
-                    <c:remove var="genre" scope="session"/>
+                    <p style="color: red">${sessionScope.genreId}</p>
+                    <c:remove var="genreId" scope="session"/>
                     <select name="genreId" title="genre">
                         <c:forEach items="${requestScope.genres}" var="genre">
                             <option value="${genre.id}">${genre.name}</option>

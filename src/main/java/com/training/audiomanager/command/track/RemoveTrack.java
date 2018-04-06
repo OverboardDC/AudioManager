@@ -3,6 +3,7 @@ package com.training.audiomanager.command.track;
 import com.training.audiomanager.command.Command;
 import com.training.audiomanager.service.MusicTrackService;
 import com.training.audiomanager.util.PageConstants;
+import com.training.audiomanager.util.ParameterConstants;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +18,7 @@ public class RemoveTrack implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        musicTrackService.remove(Long.valueOf(request.getParameter("id")));
+        musicTrackService.remove(Long.valueOf(request.getParameter(ParameterConstants.ID)));
         return PageConstants.INDEX_REDIRECT;
     }
 }

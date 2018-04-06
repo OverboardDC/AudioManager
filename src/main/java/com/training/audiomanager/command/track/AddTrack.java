@@ -10,6 +10,7 @@ import com.training.audiomanager.service.MusicTrackService;
 import com.training.audiomanager.service.PerformerService;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.PageConstants;
+import com.training.audiomanager.util.ParameterConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -30,11 +31,11 @@ public class AddTrack implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         InputUtil inputUtil = new InputUtil();
-        String performerName = inputUtil.inputStringValue(request, "performer");
-        Long genreId = inputUtil.inputLongValue(request, "genreId");
-        String album = inputUtil.inputStringValue(request, "album");
-        String name = inputUtil.inputStringValue(request, "name");
-        double duration = inputUtil.inputDoubleValue(request, "duration");
+        String performerName = inputUtil.inputStringValue(request, ParameterConstants.PERFORMER);
+        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID);
+        String album = inputUtil.inputStringValue(request, ParameterConstants.ALBUM);
+        String name = inputUtil.inputStringValue(request, ParameterConstants.NAME);
+        double duration = inputUtil.inputDoubleValue(request, ParameterConstants.DURATION);
         if (!inputUtil.isValid()) {
             return PageConstants.ADD_TRACK_PAGE_REDIRECT;
         }
