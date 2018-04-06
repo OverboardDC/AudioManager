@@ -24,10 +24,10 @@ public class InputUtil {
         return value;
     }
 
-    public double inputDoubleValue(HttpServletRequest request, String param){
-        double value = 0;
+    public int inputDoubleValue(HttpServletRequest request, String param){
+        int value = 0;
         try {
-            value = Double.valueOf(request.getParameter(param));
+            value = Integer.valueOf(request.getParameter(param));
         } catch (NumberFormatException e){
             valid = validationFailed(request, param);
         }

@@ -23,8 +23,8 @@ public class GetTracksByDuration implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        double min = Double.parseDouble(request.getParameter(ParameterConstants.MIN));
-        double max = Double.parseDouble(request.getParameter(ParameterConstants.MAX));
+        int min = Integer.parseInt(request.getParameter(ParameterConstants.MIN));
+        int max = Integer.parseInt(request.getParameter(ParameterConstants.MAX));
         List<MusicTrack> musicTracks = musicTrackService.getTracksByDuration(min, max);
         request.setAttribute(AttributeConstants.TRACKS, musicTracks);
         request.setAttribute(AttributeConstants.GENRES, genreService.getAll());

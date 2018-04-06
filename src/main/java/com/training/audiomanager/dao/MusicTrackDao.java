@@ -39,7 +39,7 @@ public class MusicTrackDao{
         return musicTracks;
     }
 
-    public List<MusicTrack> getTracksByDuration(double min, double max){
+    public List<MusicTrack> getTracksByDuration(int min, int max){
         ArrayList<MusicTrack> musicTracks = new ArrayList<>();
         for(MusicTrack musicTrack : musicTrackMap.values()){
             double duration = musicTrack.getDuration();

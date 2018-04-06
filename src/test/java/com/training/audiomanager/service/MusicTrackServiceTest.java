@@ -25,7 +25,7 @@ public class MusicTrackServiceTest {
         Genre testGenre = new GenreBuilder().buildId(1L).buildName("Test genre").buildGenre();
         Performer testPerformer = new PerformerBuilder().buildId(1L).buildName("Test performer").buildPerformer();
         String album = "Test album";
-        testTrack = new MusicTrack(1L, testPerformer, testGenre, album, "Test", 1, LocalDateTime.MAX);
+        testTrack = new MusicTrack(1L, testPerformer, testGenre, album, "Test", 10, LocalDateTime.MAX);
     }
 
     @After
@@ -62,7 +62,7 @@ public class MusicTrackServiceTest {
     @Test
     public void getTracksByDurationTest() {
         musicTrackService.add(testTrack);
-        MusicTrack musicTrack = musicTrackService.getTracksByDuration(0.99, 1.01).get(0);
+        MusicTrack musicTrack = musicTrackService.getTracksByDuration(9, 11).get(0);
         assertTrue(musicTrack.equals(testTrack));
     }
 

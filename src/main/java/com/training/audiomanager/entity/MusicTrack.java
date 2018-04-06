@@ -10,10 +10,10 @@ public class MusicTrack {
     private Genre genre;
     private String album;
     private String name;
-    private double duration;
+    private int duration;
     private LocalDateTime creatingDateTime;
 
-    public MusicTrack(Long id, Performer performer, Genre genre, String album, String name, double duration, LocalDateTime creatingDateTime) {
+    public MusicTrack(Long id, Performer performer, Genre genre, String album, String name, int duration, LocalDateTime creatingDateTime) {
         this.id = id;
         this.performer = performer;
         this.genre = genre;
@@ -66,11 +66,11 @@ public class MusicTrack {
         this.name = name;
     }
 
-    public double getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

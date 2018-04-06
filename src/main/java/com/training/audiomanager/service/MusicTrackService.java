@@ -40,7 +40,7 @@ public class MusicTrackService{
         return musicTrackDao.getTracksByPerformer(performerId);
     }
 
-    public List<MusicTrack> getTracksByDuration(double min, double max) {
+    public List<MusicTrack> getTracksByDuration(int min, int max) {
         return musicTrackDao.getTracksByDuration(min, max);
     }
 }
