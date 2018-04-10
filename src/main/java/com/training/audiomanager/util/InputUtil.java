@@ -6,9 +6,9 @@ public class InputUtil {
 
     private boolean valid = true;
 
-    public String inputStringValue(HttpServletRequest request, String param){
+    public String inputStringValue(HttpServletRequest request, String param, String regex){
         String value = request.getParameter(param);
-        if (!ValidationUtil.isValid(value, RegexConstants.NAME_REGEX)) {
+        if (!ValidationUtil.isValid(value, regex)) {
             valid = validationFailed(request, param);
         }
         return value;
@@ -24,7 +24,7 @@ public class InputUtil {
         return value;
     }
 
-    public int inputDoubleValue(HttpServletRequest request, String param){
+    public int inputIntValue(HttpServletRequest request, String param){
         int value = 0;
         try {
             value = Integer.valueOf(request.getParameter(param));

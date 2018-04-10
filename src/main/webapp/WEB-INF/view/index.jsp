@@ -21,6 +21,7 @@
                         <p>Genre: <a href="/app/getTracksByGenre?id=${track.genre.id}">${track.genre.name}</a></p>
                         <p>Duration: ${track.duration}</p>
                         <p>Creation date: ${track.creatingDateTime}</p>
+                        <a href="/app/admin/editTrackPage?id=${track.id}">Edit</a>
                         <a href="app/redirect/admin/removeTrack?id=${track.id}">Remove</a>
                     </div>
                 </c:forEach>

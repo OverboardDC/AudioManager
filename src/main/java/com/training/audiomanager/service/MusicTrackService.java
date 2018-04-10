@@ -1,46 +1,14 @@
 package com.training.audiomanager.service;
 
-import com.training.audiomanager.dao.MusicTrackDao;
 import com.training.audiomanager.entity.MusicTrack;
 
 import java.util.List;
 
-public class MusicTrackService{
+public interface MusicTrackService extends GenericService<MusicTrack>{
 
-    private MusicTrackDao musicTrackDao;
-    private Long lastId = 1L;
+    List<MusicTrack> getTracksByGenre(Long genreId);
 
-    public MusicTrackService() {
-        musicTrackDao = new MusicTrackDao();
-    }
+    List<MusicTrack> getTracksByDuration(int min, int max);
 
-    public List<MusicTrack> getAll() {
-        return musicTrackDao.getAll();
-    }
-
-    public MusicTrack get(Long id) {
-        return musicTrackDao.get(id);
-    }
-
-    public void add(MusicTrack musicTrack) {
-        musicTrack.setId(lastId);
-        musicTrackDao.add(musicTrack);
-        ++lastId;
-    }
-
-    public void remove(Long id) {
-        musicTrackDao.remove(id);
-    }
-
-    public List<MusicTrack> getTracksByGenre(Long genreId) {
-        return musicTrackDao.getTracksByGenre(genreId);
-    }
-
-    public List<MusicTrack> getTracksByPerformer(Long performerId) {
-        return musicTrackDao.getTracksByPerformer(performerId);
-    }
-
-    public List<MusicTrack> getTracksByDuration(int min, int max) {
-        return musicTrackDao.getTracksByDuration(min, max);
-    }
+    List<MusicTrack> getTracksByPerformer(Long performerId);
 }

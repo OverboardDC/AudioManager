@@ -6,8 +6,8 @@ import com.training.audiomanager.command.genre.AddGenre;
 import com.training.audiomanager.command.genre.RemoveGenre;
 import com.training.audiomanager.command.track.*;
 import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.service.MusicTrackService;
-import com.training.audiomanager.service.PerformerService;
+import com.training.audiomanager.service.MusicTrackServiceImpl;
+import com.training.audiomanager.service.PerformerServiceImpl;
 import com.training.audiomanager.util.CommandConstants;
 
 import javax.servlet.ServletException;
@@ -26,17 +26,19 @@ public class Servlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        MusicTrackService musicTrackService = new MusicTrackService();
+        MusicTrackServiceImpl musicTrackServiceImpl = new MusicTrackServiceImpl();
         GenreService genreService = new GenreService();
-        PerformerService performerService = new PerformerService();
+        PerformerServiceImpl performerServiceImpl = new PerformerServiceImpl();
         commandMap = new HashMap<>();
-        commandMap.put(CommandConstants.HOME_PAGE, new HomePage(musicTrackService, genreService));
-        commandMap.put(CommandConstants.ADD_TRACK_PAGE, new AddTrackPage(genreService, performerService));
-        commandMap.put(CommandConstants.ADD_TRACK, new AddTrack(musicTrackService, genreService, performerService));
-        commandMap.put(CommandConstants.REMOVE_TRACK, new RemoveTrack(musicTrackService));
-        commandMap.put(CommandConstants.GET_TRACKS_BY_GENRE, new GetTracksByGenre(musicTrackService, genreService));
-        commandMap.put(CommandConstants.GET_TRACKS_BY_DURATION, new GetTracksByDuration(musicTrackService, genreService));
-        commandMap.put(CommandConstants.GET_TRACKS_BY_PERFORMER, new GetTrackByPerformer(musicTrackService, genreService));
+        commandMap.put(CommandConstants.HOME_PAGE, new HomePage(musicTrackServiceImpl, genreService));
+        commandMap.put(CommandConstants.ADD_TRACK_PAGE, new AddTrackPage(genreService, performerServiceImpl));
+        commandMap.put(CommandConstants.ADD_TRACK, new AddTrack(musicTrackServiceImpl, genreService, performerServiceImpl));
+        commandMap.put(CommandConstants.EDIT_TRACK_PAGE, new EditTrackPage(musicTrackServiceImpl, genreService, performerServiceImpl));
+        commandMap.put(CommandConstants.EDIT_TRACK, new EditTrack(musicTrackServiceImpl, genreService, performerServiceImpl));
+        commandMap.put(CommandConstants.REMOVE_TRACK, new RemoveTrack(musicTrackServiceImpl));
+        commandMap.put(CommandConstants.GET_TRACKS_BY_GENRE, new GetTracksByGenre(musicTrackServiceImpl, genreService));
+        commandMap.put(CommandConstants.GET_TRACKS_BY_DURATION, new GetTracksByDuration(musicTrackServiceImpl, genreService));
+        commandMap.put(CommandConstants.GET_TRACKS_BY_PERFORMER, new GetTrackByPerformer(musicTrackServiceImpl, genreService));
         commandMap.put(CommandConstants.ADD_GENRE, new AddGenre(genreService));
         commandMap.put(CommandConstants.REMOVE_GENRE, new RemoveGenre(genreService));
     }

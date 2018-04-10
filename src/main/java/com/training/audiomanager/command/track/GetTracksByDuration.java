@@ -3,7 +3,7 @@ package com.training.audiomanager.command.track;
 import com.training.audiomanager.command.Command;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.service.MusicTrackService;
+import com.training.audiomanager.service.MusicTrackServiceImpl;
 import com.training.audiomanager.util.AttributeConstants;
 import com.training.audiomanager.util.PageConstants;
 import com.training.audiomanager.util.ParameterConstants;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class GetTracksByDuration implements Command {
 
-    private MusicTrackService musicTrackService;
+    private MusicTrackServiceImpl musicTrackServiceImpl;
     private GenreService genreService;
 
-    public GetTracksByDuration(MusicTrackService musicTrackService, GenreService genreService) {
-        this.musicTrackService = musicTrackService;
+    public GetTracksByDuration(MusicTrackServiceImpl musicTrackServiceImpl, GenreService genreService) {
+        this.musicTrackServiceImpl = musicTrackServiceImpl;
         this.genreService = genreService;
     }
 
@@ -25,7 +25,7 @@ public class GetTracksByDuration implements Command {
     public String execute(HttpServletRequest request) {
         int min = Integer.parseInt(request.getParameter(ParameterConstants.MIN));
         int max = Integer.parseInt(request.getParameter(ParameterConstants.MAX));
-        List<MusicTrack> musicTracks = musicTrackService.getTracksByDuration(min, max);
+        List<MusicTrack> musicTracks = musicTrackServiceImpl.getTracksByDuration(min, max);
         request.setAttribute(AttributeConstants.TRACKS, musicTracks);
         request.setAttribute(AttributeConstants.GENRES, genreService.getAll());
         return PageConstants.INDEX;

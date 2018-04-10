@@ -7,6 +7,7 @@ import com.training.audiomanager.service.GenreService;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.PageConstants;
 import com.training.audiomanager.util.ParameterConstants;
+import com.training.audiomanager.util.RegexConstants;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +23,7 @@ public class AddGenre implements Command {
     public String execute(HttpServletRequest request) {
         InputUtil inputUtil = new InputUtil();
 
-        String genreName = inputUtil.inputStringValue(request, ParameterConstants.GENRE_NAME);
+        String genreName = inputUtil.inputStringValue(request, ParameterConstants.GENRE_NAME, RegexConstants.NAME_REGEX);
         if(!inputUtil.isValid()){
             return PageConstants.INDEX_REDIRECT;
         }

@@ -7,8 +7,6 @@ public class Genre {
     private Long id;
     private String name;
 
-    private boolean editing;
-
     public Genre(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -31,14 +29,6 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isEditing() {
-        return editing;
-    }
-
-    public void setEditing(boolean editing) {
-        this.editing = editing;
     }
 
     @Override

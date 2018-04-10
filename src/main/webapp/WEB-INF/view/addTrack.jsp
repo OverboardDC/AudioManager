@@ -24,6 +24,7 @@
 
                     <p style="color: red">${sessionScope.performer}</p>
                     <c:remove var="performer" scope="session"/>
+                    <label>Performer:</label>
                     <input list="performers" placeholder="Performer" name="performer">
                     <datalist id="performers">
                         <c:forEach items="${requestScope.performers}" var="genre">
@@ -33,6 +34,7 @@
 
                     <p style="color: red">${sessionScope.genreId}</p>
                     <c:remove var="genreId" scope="session"/>
+                    <label>Genre:</label>
                     <select name="genreId" title="genre">
                         <c:forEach items="${requestScope.genres}" var="genre">
                             <option value="${genre.id}">${genre.name}</option>
@@ -41,14 +43,17 @@
 
                     <p style="color: red">${sessionScope.album}</p>
                     <c:remove var="album" scope="session"/>
+                    <label>Album:</label>
                     <input placeholder="Album" name="album">
 
                     <p style="color: red">${sessionScope.name}</p>
                     <c:remove var="name" scope="session"/>
+                    <label>Name:</label>
                     <input placeholder="Name" name="name">
 
                     <p style="color: red">${sessionScope.duration}</p>
                     <c:remove var="duration" scope="session"/>
+                    <label>Duration:</label>
                     <input placeholder="Duration" name="duration">
 
                     <button type="submit">Add new track</button>
