@@ -28,6 +28,4 @@ public class GenreServiceTest {
         genreService.add(testGenre);
         assertTrue(genreService.getAll().size() == startSize + 1);
     }
-
-
 }

@@ -6,8 +6,12 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName(DatabaseConstants.DRIVER);
+    public static Connection getConnection() throws SQLException{
+        try {
+            Class.forName(DatabaseConstants.DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return DriverManager.getConnection(DatabaseConstants.URL, DatabaseConstants.LOGIN, DatabaseConstants.PASSWORD);
     }
 }

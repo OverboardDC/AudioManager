@@ -5,9 +5,7 @@ import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
-import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.service.MusicTrackServiceImpl;
-import com.training.audiomanager.service.PerformerServiceImpl;
+import com.training.audiomanager.service.*;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.PageConstants;
 import com.training.audiomanager.util.ParameterConstants;
@@ -18,15 +16,15 @@ import java.time.LocalDateTime;
 
 public class AddTrack implements Command {
 
-    private MusicTrackServiceImpl musicTrackServiceImpl;
+    private MusicTrackService musicTrackService;
     private GenreService genreService;
-    private PerformerServiceImpl performerServiceImpl;
+    private PerformerService performerService;
 
 
-    public AddTrack(MusicTrackServiceImpl musicTrackServiceImpl, GenreService genreService, PerformerServiceImpl performerServiceImpl) {
-        this.musicTrackServiceImpl = musicTrackServiceImpl;
+    public AddTrack(MusicTrackService musicTrackService, GenreService genreService, PerformerService performerService) {
+        this.musicTrackService = musicTrackService;
         this.genreService = genreService;
-        this.performerServiceImpl = performerServiceImpl;
+        this.performerService = performerService;
     }
 
     @Override
@@ -41,11 +39,11 @@ public class AddTrack implements Command {
             return PageConstants.ADD_TRACK_PAGE_REDIRECT;
         }
 
-        Performer performer = performerServiceImpl.getOrAdd(performerName);
+        Performer performer = performerService.getOrAdd(performerName);
         Genre genre = genreService.get(genreId);
         MusicTrack musicTrack = new MusicTrackBuilder().buildPerformer(performer).buildGenre(genre).buildAlbum(album).
                 buildName(name).buildDuration(duration).buildCreatingDateTime(LocalDateTime.now()).buildMusicTrack();
-        musicTrackServiceImpl.add(musicTrack);
+        musicTrackService.add(musicTrack);
         return PageConstants.INDEX_REDIRECT;
     }
 

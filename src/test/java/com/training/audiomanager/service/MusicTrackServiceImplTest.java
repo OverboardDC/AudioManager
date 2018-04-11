@@ -5,7 +5,6 @@ import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,12 +16,12 @@ import static junit.framework.TestCase.assertTrue;
 @Ignore
 public class MusicTrackServiceImplTest {
 
-    private static MusicTrackServiceImpl musicTrackServiceImpl;
+    private static MusicTrackService musicTrackService;
     private static MusicTrack testTrack;
 
     @BeforeClass
     public static void init() {
-        musicTrackServiceImpl = new MusicTrackServiceImpl();
+        musicTrackService = new MusicTrackServiceImpl();
         Genre testGenre = new GenreBuilder().buildId(1L).buildName("Test genre").buildGenre();
         Performer testPerformer = new PerformerBuilder().buildId(1L).buildName("Test performer").buildPerformer();
         String album = "Test album";
@@ -31,9 +30,9 @@ public class MusicTrackServiceImplTest {
 
     @Test
     public void addTrackTest() {
-        int startSize = musicTrackServiceImpl.getAll().size();
-        musicTrackServiceImpl.add(testTrack);
-        assertTrue(musicTrackServiceImpl.getAll().size() == startSize + 1);
+        int startSize = musicTrackService.getAll().size();
+        musicTrackService.add(testTrack);
+        assertTrue(musicTrackService.getAll().size() == startSize + 1);
     }
 
 }

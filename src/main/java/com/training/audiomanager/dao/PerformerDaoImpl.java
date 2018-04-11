@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO Create dao instead of temporary map
 public class PerformerDaoImpl implements PerformerDao {
 
 
@@ -27,7 +26,7 @@ public class PerformerDaoImpl implements PerformerDao {
                 performers.add(new PerformerBuilder().buildId(resultSet.getLong(1))
                         .buildName(resultSet.getString(2)).buildPerformer());
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return performers;
@@ -41,7 +40,7 @@ public class PerformerDaoImpl implements PerformerDao {
 
             preparedStatement.setString(1, performer.getName());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -60,14 +59,13 @@ public class PerformerDaoImpl implements PerformerDao {
                             buildName(resultSet.getString(2)).buildPerformer();
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return performer;
     }
 
     @Override
-    //TODO Refactor
     public Performer get(String name) {
         Performer performer = null;
         String query = "SELECT id, name FROM performer WHERE name = ?";
@@ -81,14 +79,14 @@ public class PerformerDaoImpl implements PerformerDao {
                             buildName(resultSet.getString(2)).buildPerformer();
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return performer;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
-    //TODO WAS not tested
     public void edit(Performer performer) {
         String query = "UPDATE performer SET name = ? WHERE id = ?";
         try (Connection connection = ConnectionFactory.getConnection();
@@ -96,7 +94,7 @@ public class PerformerDaoImpl implements PerformerDao {
             preparedStatement.setString(1, performer.getName());
             preparedStatement.setLong(2, performer.getId());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -108,7 +106,7 @@ public class PerformerDaoImpl implements PerformerDao {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

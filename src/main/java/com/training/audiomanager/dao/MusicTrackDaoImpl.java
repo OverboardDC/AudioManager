@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO Create dao instead of temporary map
 public class MusicTrackDaoImpl implements MusicTrackDao {
 
     @Override
@@ -27,14 +26,13 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
             while (rs.next()) {
                 musicTracks.add(buildTrackFromResultSet(rs));
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return musicTracks;
     }
 
     @Override
-    //TODO TEST
     public MusicTrack get(Long id) {
         MusicTrack musicTrack = null;
         String query = "SELECT * FROM musictrack" +
@@ -49,7 +47,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
                     musicTrack = buildTrackFromResultSet(rs);
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return musicTrack;
@@ -68,7 +66,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
             preparedStatement.setLong(5, musicTrack.getDuration());
             preparedStatement.setLong(6, musicTrack.getId());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -86,7 +84,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
             preparedStatement.setInt(5, musicTrack.getDuration());
             preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -99,13 +97,12 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    //TODO TEST
     public List<MusicTrack> getTracksByGenre(Long genreId) {
         List<MusicTrack> musicTracks = new ArrayList<>();
         String query = "SELECT * FROM musictrack" +
@@ -117,7 +114,6 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
 
     @Override
-    //TODO TEST
     public List<MusicTrack> getTracksByDuration(int min, int max) {
         List<MusicTrack> musicTracks = new ArrayList<>();
         String query = "SELECT * FROM musictrack" +
@@ -134,7 +130,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
                     musicTracks.add(buildTrackFromResultSet(rs));
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return musicTracks;
@@ -161,7 +157,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
                     musicTracks.add(buildTrackFromResultSet(rs));
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

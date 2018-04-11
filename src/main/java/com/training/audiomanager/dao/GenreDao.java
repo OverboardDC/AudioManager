@@ -23,7 +23,7 @@ public class GenreDao implements GenericDao<Genre> {
                 genres.add(new GenreBuilder().buildId(resultSet.getLong(1))
                         .buildName(resultSet.getString(2)).buildGenre());
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return genres;
@@ -43,23 +43,23 @@ public class GenreDao implements GenericDao<Genre> {
                             buildName(resultSet.getString(2)).buildGenre();
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return genre;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
-    //TODO WAS not tested
     public void edit(Genre genre) {
         String query = "UPDATE genre SET name = ? WHERE id = ?";
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, genre.getName());
-            preparedStatement.setLong(1, genre.getId());
+            preparedStatement.setLong(2, genre.getId());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -72,7 +72,7 @@ public class GenreDao implements GenericDao<Genre> {
 
             preparedStatement.setString(1, genre.getName());
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -85,7 +85,7 @@ public class GenreDao implements GenericDao<Genre> {
 
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

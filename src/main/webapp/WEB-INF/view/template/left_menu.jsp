@@ -27,7 +27,13 @@
         </ul>
         <h3>Duration</h3>
         <form action="/app/getTracksByDuration">
+
+            <p style="color: red">${sessionScope.min}</p>
+            <c:remove var="min" scope="session"/>
             <input placeholder="from" name="min">
+
+            <p style="color: red">${sessionScope.max}</p>
+            <c:remove var="max" scope="session"/>
             <input placeholder="to" name="max">
             <button type="submit">Find compositions</button>
         </form>

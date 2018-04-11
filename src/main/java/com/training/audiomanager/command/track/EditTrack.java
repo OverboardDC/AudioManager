@@ -5,10 +5,7 @@ import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
-import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.service.MusicTrackService;
-import com.training.audiomanager.service.MusicTrackServiceImpl;
-import com.training.audiomanager.service.PerformerServiceImpl;
+import com.training.audiomanager.service.*;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.PageConstants;
 import com.training.audiomanager.util.ParameterConstants;
@@ -19,11 +16,11 @@ import java.time.LocalDateTime;
 
 public class EditTrack implements Command{
 
-    private MusicTrackServiceImpl musicTrackService;
+    private MusicTrackService musicTrackService;
     private GenreService genreService;
-    private PerformerServiceImpl performerService;
+    private PerformerService performerService;
 
-    public EditTrack(MusicTrackServiceImpl musicTrackService, GenreService genreService, PerformerServiceImpl performerService) {
+    public EditTrack(MusicTrackService musicTrackService, GenreService genreService, PerformerService performerService) {
         this.musicTrackService = musicTrackService;
         this.genreService = genreService;
         this.performerService = performerService;
