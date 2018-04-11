@@ -12,7 +12,8 @@
         <jsp:include page="template/left_menu.jsp"/>
         <section>
             <div class="main_content">
-                <a href="app/admin/addTrackPage">Add new track</a>
+                <a class="add_track_link" href="app/admin/addTrackPage">Add new track</a>
+                <div class="clearfix"></div>
                 <c:forEach items="${requestScope.tracks}" var="track">
                     <div class="track">
                         <h5>${track.name}</h5>

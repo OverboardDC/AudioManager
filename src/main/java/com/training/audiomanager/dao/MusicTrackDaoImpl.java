@@ -63,7 +63,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
             preparedStatement.setLong(2, musicTrack.getGenre().getId());
             preparedStatement.setString(3, musicTrack.getAlbum());
             preparedStatement.setString(4, musicTrack.getName());
-            preparedStatement.setLong(5, musicTrack.getDuration());
+            preparedStatement.setInt(5, musicTrack.getDuration());
             preparedStatement.setLong(6, musicTrack.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
