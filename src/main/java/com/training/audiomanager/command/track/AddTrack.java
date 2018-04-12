@@ -7,9 +7,9 @@ import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.service.*;
 import com.training.audiomanager.util.InputUtil;
-import com.training.audiomanager.util.PageConstants;
-import com.training.audiomanager.util.ParameterConstants;
-import com.training.audiomanager.util.RegexConstants;
+import com.training.audiomanager.util.constants.PageConstants;
+import com.training.audiomanager.util.constants.ParameterConstants;
+import com.training.audiomanager.util.constants.RegexConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;

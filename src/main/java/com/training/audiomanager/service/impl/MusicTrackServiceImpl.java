@@ -1,7 +1,8 @@
-package com.training.audiomanager.service;
+package com.training.audiomanager.service.impl;
 
-import com.training.audiomanager.dao.MusicTrackDaoImpl;
+import com.training.audiomanager.dao.impl.MusicTrackDaoImpl;
 import com.training.audiomanager.entity.MusicTrack;
+import com.training.audiomanager.service.MusicTrackService;
 
 import java.util.List;
 

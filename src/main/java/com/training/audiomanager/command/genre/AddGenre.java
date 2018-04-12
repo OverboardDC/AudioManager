@@ -5,9 +5,9 @@ import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.service.GenreService;
 import com.training.audiomanager.util.InputUtil;
-import com.training.audiomanager.util.PageConstants;
-import com.training.audiomanager.util.ParameterConstants;
-import com.training.audiomanager.util.RegexConstants;
+import com.training.audiomanager.util.constants.PageConstants;
+import com.training.audiomanager.util.constants.ParameterConstants;
+import com.training.audiomanager.util.constants.RegexConstants;
 
 import javax.servlet.http.HttpServletRequest;
 

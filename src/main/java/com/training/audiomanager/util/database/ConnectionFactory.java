@@ -1,4 +1,4 @@
-package com.training.audiomanager.util;
+package com.training.audiomanager.util.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

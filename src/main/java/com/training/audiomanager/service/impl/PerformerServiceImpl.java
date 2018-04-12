@@ -1,11 +1,12 @@
-package com.training.audiomanager.service;
+package com.training.audiomanager.service.impl;
 
-import com.training.audiomanager.dao.PerformerDaoImpl;
+import com.training.audiomanager.dao.impl.PerformerDaoImpl;
 import com.training.audiomanager.entity.Performer;
+import com.training.audiomanager.service.PerformerService;
 
 import java.util.List;
 
-public class PerformerServiceImpl implements PerformerService{
+public class PerformerServiceImpl implements PerformerService {
 
     private PerformerDaoImpl performerDaoImpl = new PerformerDaoImpl();
 

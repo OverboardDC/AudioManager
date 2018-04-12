@@ -3,6 +3,7 @@ package com.training.audiomanager.service;
 import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.service.GenreService;
+import com.training.audiomanager.service.impl.GenreServiceImpl;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -18,7 +19,7 @@ public class GenreServiceTest {
 
     @BeforeClass
     public static void init(){
-        genreService = new GenreService();
+        genreService = new GenreServiceImpl();
         testGenre = new GenreBuilder().buildId(1L).buildName("Test genre").buildGenre();
     }
 

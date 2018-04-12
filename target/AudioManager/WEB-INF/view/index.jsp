@@ -16,7 +16,7 @@
                 <div class="clearfix"></div>
                 <c:forEach items="${requestScope.tracks}" var="track">
                     <div class="track">
-                        <h5>${track.name}</h5>
+                        <h3>${track.name}</h3>
                         <p>Performer: <a href="/app/getTracksByPerformer?id=${track.performer.id}">${track.performer.name}</a></p>
                         <p>Album: ${track.album}</p>
                         <p>Genre: <a href="/app/getTracksByGenre?id=${track.genre.id}">${track.genre.name}</a></p>

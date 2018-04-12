@@ -2,8 +2,8 @@ package com.training.audiomanager.command.genre;
 
 import com.training.audiomanager.command.Command;
 import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.util.PageConstants;
-import com.training.audiomanager.util.ParameterConstants;
+import com.training.audiomanager.util.constants.PageConstants;
+import com.training.audiomanager.util.constants.ParameterConstants;
 
 import javax.servlet.http.HttpServletRequest;
 

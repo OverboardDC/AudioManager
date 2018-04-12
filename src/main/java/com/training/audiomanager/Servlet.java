@@ -6,7 +6,10 @@ import com.training.audiomanager.command.genre.AddGenre;
 import com.training.audiomanager.command.genre.RemoveGenre;
 import com.training.audiomanager.command.track.*;
 import com.training.audiomanager.service.*;
-import com.training.audiomanager.util.CommandConstants;
+import com.training.audiomanager.service.impl.GenreServiceImpl;
+import com.training.audiomanager.service.impl.MusicTrackServiceImpl;
+import com.training.audiomanager.service.impl.PerformerServiceImpl;
+import com.training.audiomanager.util.constants.CommandConstants;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +28,7 @@ public class Servlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         MusicTrackService musicTrackService = new MusicTrackServiceImpl();
-        GenreService genreService = new GenreService();
+        GenreService genreService = new GenreServiceImpl();
         PerformerService performerService = new PerformerServiceImpl();
         commandMap = new HashMap<>();
         commandMap.put(CommandConstants.HOME_PAGE, new HomePage(musicTrackService, genreService));

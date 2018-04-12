@@ -1,8 +1,10 @@
-package com.training.audiomanager.dao;
+package com.training.audiomanager.dao.impl;
 
+import com.training.audiomanager.dao.PerformerDao;
+import com.training.audiomanager.dao.queries.PerformerDaoQueries;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
-import com.training.audiomanager.util.ConnectionFactory;
+import com.training.audiomanager.util.database.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +19,7 @@ public class PerformerDaoImpl implements PerformerDao {
     @Override
     public List<Performer> getAll() {
         List<Performer> performers = new ArrayList<>();
-        String query = "SELECT id, name FROM performer";
+        String query = PerformerDaoQueries.SELECT_ALL_PERFORMERS;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -34,7 +36,7 @@ public class PerformerDaoImpl implements PerformerDao {
 
     @Override
     public void add(Performer performer) {
-        String query = "INSERT INTO performer (name) VALUES (?)";
+        String query = PerformerDaoQueries.ADD_PERFORMER;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -48,7 +50,7 @@ public class PerformerDaoImpl implements PerformerDao {
     @Override
     public Performer get(Long id) {
         Performer performer = null;
-        String query = "SELECT id, name FROM performer WHERE id = ?";
+        String query = PerformerDaoQueries.GET_PERFORMER_BY_ID;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
@@ -68,7 +70,7 @@ public class PerformerDaoImpl implements PerformerDao {
     @Override
     public Performer get(String name) {
         Performer performer = null;
-        String query = "SELECT id, name FROM performer WHERE name = ?";
+        String query = PerformerDaoQueries.GET_PERFORMER_BY_NAME;
         try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
@@ -88,7 +90,7 @@ public class PerformerDaoImpl implements PerformerDao {
     @SuppressWarnings("Duplicates")
     @Override
     public void edit(Performer performer) {
-        String query = "UPDATE performer SET name = ? WHERE id = ?";
+        String query = PerformerDaoQueries.EDIT_PERFORMER;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, performer.getName());
@@ -101,7 +103,7 @@ public class PerformerDaoImpl implements PerformerDao {
 
     @Override
     public void remove(Long id) {
-        String query = "DELETE FROM performer WHERE id = ?";
+        String query = PerformerDaoQueries.REMOVE_PERFORMER;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);

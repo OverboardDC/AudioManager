@@ -2,6 +2,7 @@ package com.training.audiomanager.service;
 
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
+import com.training.audiomanager.service.impl.PerformerServiceImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

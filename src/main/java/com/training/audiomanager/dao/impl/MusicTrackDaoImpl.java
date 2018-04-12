@@ -1,10 +1,12 @@
-package com.training.audiomanager.dao;
+package com.training.audiomanager.dao.impl;
 
+import com.training.audiomanager.dao.MusicTrackDao;
+import com.training.audiomanager.dao.queries.MusicTrackDaoQueries;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
-import com.training.audiomanager.util.ConnectionFactory;
+import com.training.audiomanager.util.database.ConnectionFactory;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -16,9 +18,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     @Override
     public List<MusicTrack> getAll() {
         List<MusicTrack> musicTracks = new ArrayList<>();
-        String query = "SELECT * FROM musictrack" +
-                " INNER JOIN performer p ON musictrack.performer_id = p.id" +
-                " INNER JOIN genre g ON musictrack.genre_id = g.id";
+        String query = MusicTrackDaoQueries.GET_ALL_TRACKS;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet rs = preparedStatement.executeQuery()) {
@@ -35,9 +35,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     @Override
     public MusicTrack get(Long id) {
         MusicTrack musicTrack = null;
-        String query = "SELECT * FROM musictrack" +
-                " INNER JOIN performer p ON musictrack.performer_id = p.id" +
-                " INNER JOIN genre g ON musictrack.genre_id = g.id WHERE musictrack.id = ?";
+        String query = MusicTrackDaoQueries.GET_TRACK;
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -55,7 +53,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
     @Override
     public void edit(MusicTrack musicTrack) {
-        String query = "UPDATE musictrack SET performer_id = ?, genre_id = ?, album = ?, name = ?, duration = ?  WHERE id = ?";
+        String query = MusicTrackDaoQueries.EDIT_TRACK;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -73,7 +71,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
     @Override
     public void add(MusicTrack musicTrack) {
-        String query = "INSERT INTO musictrack (performer_id, genre_id, album, name, duration, creatingdatetime) VALUES (?,?,?,?,?,?)";
+        String query = MusicTrackDaoQueries.ADD_TRACK;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -91,7 +89,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
     @Override
     public void remove(Long id) {
-        String query = "DELETE FROM musictrack WHERE id = ?";
+        String query = MusicTrackDaoQueries.REMOVE_TRACK;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -105,9 +103,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     @Override
     public List<MusicTrack> getTracksByGenre(Long genreId) {
         List<MusicTrack> musicTracks = new ArrayList<>();
-        String query = "SELECT * FROM musictrack" +
-                " INNER JOIN performer p ON musictrack.performer_id = p.id" +
-                " INNER JOIN genre g ON musictrack.genre_id = g.id WHERE g.id = ?";
+        String query = MusicTrackDaoQueries.GET_TRACKS_BY_GENRE;
         getTracksByField(genreId, musicTracks, query);
         return musicTracks;
     }
@@ -116,9 +112,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     @Override
     public List<MusicTrack> getTracksByDuration(int min, int max) {
         List<MusicTrack> musicTracks = new ArrayList<>();
-        String query = "SELECT * FROM musictrack" +
-                " INNER JOIN performer p ON musictrack.performer_id = p.id" +
-                " INNER JOIN genre g ON musictrack.genre_id = g.id WHERE duration BETWEEN ? AND ?";
+        String query = MusicTrackDaoQueries.GET_TRACKS_BY_DURATION;
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -139,9 +133,7 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     @Override
     public List<MusicTrack> getTracksByPerformer(Long performerId) {
         List<MusicTrack> musicTracks = new ArrayList<>();
-        String query = "SELECT * FROM musictrack" +
-                " INNER JOIN performer p ON musictrack.performer_id = p.id" +
-                " INNER JOIN genre g ON musictrack.genre_id = g.id WHERE p.id = ?";
+        String query = MusicTrackDaoQueries.GET_TRACKS_BY_PERFORMER;
         getTracksByField(performerId, musicTracks, query);
         return musicTracks;
     }

@@ -1,4 +1,4 @@
-package com.training.audiomanager.util;
+package com.training.audiomanager.util.constants;
 
 public interface PageConstants {
 
