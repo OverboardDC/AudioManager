@@ -8,10 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Audio manager</title>
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
-</head>
+<jsp:include page="template/head.jsp"/>
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>

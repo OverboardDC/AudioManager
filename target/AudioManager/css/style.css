@@ -30,9 +30,27 @@ header {
 }
 
 .logo {
+    float: left;
     width: auto;
     height: 74px;
     margin: 3px 0 0 10px;
+}
+
+.header_right {
+    float: right;
+}
+
+.header_right a {
+    color: white;
+    font-size: 24px;
+    margin: 20px 20px 0 0;
+    text-decoration: none;
+}
+
+.header_right p {
+    color: white;
+    font-size: 24px;
+    margin: 10px 20px 0 0;
 }
 
 /*

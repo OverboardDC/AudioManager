@@ -6,4 +6,9 @@ public interface AttributeConstants {
     String TRACK = "track";
     String GENRES = "genres";
     String PERFORMERS = "performers";
+    String USER = "user";
+
+    String LOGIN_ERROR = "loginError";
+    String REGISTRATION_ERROR = "registrationError";
+    String PASSWORD_CONFIRM = "password_confirm";
 }

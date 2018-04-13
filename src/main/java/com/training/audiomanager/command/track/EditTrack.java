@@ -14,7 +14,7 @@ import com.training.audiomanager.util.constants.RegexConstants;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
-public class EditTrack implements Command{
+public class EditTrack implements Command {
 
     private MusicTrackService musicTrackService;
     private GenreService genreService;
@@ -37,7 +37,7 @@ public class EditTrack implements Command{
         int duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION);
 
         if (!inputUtil.isValid()) {
-            return PageConstants.EDIT_TRACK_PAGE_REDIRECT;
+            return PageConstants.EDIT_TRACK_PAGE_REDIRECT + "?id=" + musicTrackId;
         }
 
         Performer performer = performerService.getOrAdd(performerName);

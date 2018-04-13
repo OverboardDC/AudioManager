@@ -8,10 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Audio manager</title>
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
-</head>
+<jsp:include page="template/head.jsp"/>
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>
@@ -33,9 +30,9 @@
                     </datalist>
 
                     <p style="color: red">${sessionScope.genreId}</p>
-                    <c:remove var="genreId" scope="session"/>
+                    <c:remove var="genre_id" scope="session"/>
                     <label>Genre:</label>
-                    <select name="genreId" title="genre">
+                    <select name="genre_id" title="genre">
                         <c:forEach items="${requestScope.genres}" var="genre">
                             <option value="${genre.id}">${genre.name}</option>
                         </c:forEach>

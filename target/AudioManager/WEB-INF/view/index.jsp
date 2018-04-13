@@ -1,10 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Audio manager</title>
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
-</head>
+<jsp:include page="template/head.jsp"/>
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>
@@ -12,7 +9,9 @@
         <jsp:include page="template/left_menu.jsp"/>
         <section>
             <div class="main_content">
-                <a class="add_track_link" href="app/admin/addTrackPage">Add new track</a>
+                <c:if test="${sessionScope.user.admin}">
+                    <a class="add_track_link" href="/app/admin/addTrackPage">Add new track</a>
+                </c:if>
                 <div class="clearfix"></div>
                 <c:forEach items="${requestScope.tracks}" var="track">
                     <div class="track">
@@ -22,8 +21,10 @@
                         <p>Genre: <a href="/app/getTracksByGenre?id=${track.genre.id}">${track.genre.name}</a></p>
                         <p>Duration: ${track.duration}</p>
                         <p>Creation date: ${track.creatingDateTime}</p>
-                        <a href="/app/admin/editTrackPage?id=${track.id}">Edit</a>
-                        <a href="app/redirect/admin/removeTrack?id=${track.id}">Remove</a>
+                        <c:if test="${sessionScope.user.admin}">
+                            <a href="/app/admin/editTrackPage?id=${track.id}">Edit</a>
+                            <a href="app/redirect/admin/removeTrack?id=${track.id}">Remove</a>
+                        </c:if>
                     </div>
                 </c:forEach>
             </div>

@@ -16,4 +16,10 @@ public interface CommandConstants {
     String ADD_GENRE = "redirect/admin/addGenre";
     String REMOVE_GENRE = "redirect/admin/removeGenre";
 
+    String LOGIN_PAGE = "loginPage";
+    String LOGIN = "redirect/login";
+    String LOGOUT = "redirect/logout";
+    String REGISTRATION_PAGE = "registrationPage";
+    String REGISTRATION = "redirect/registration";
+
 }
