@@ -7,22 +7,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <div class="content">
-        <header>
-            <div class="header">
-                <div class="header_logo">
-                    <a href="/app/"><img src="${pageContext.request.contextPath}/img/logo.jpg" alt="logo" class="logo"></a>
-                </div>
-                <div class="header_right">
+    <header>
+        <div class="row">
+            <nav class="navbar bg-dark col">
+                <a href="/app/" class="navbar-brand text-light"><img src="${pageContext.request.contextPath}/img/logo.jpg" alt="logo" class="logo">
+                    Audio Manager</a>
+
+                <ul class="navbar-nav">
                     <c:if test="${sessionScope.user == null}">
-                    <a href="/app/loginPage">Login</a>
+                        <li class="navbar-item">
+                            <a class="nav-link text-light" href="/app/loginPage">Login</a>
+                        </li>
                     </c:if>
                     <c:if test="${sessionScope.user != null}">
-                        <p>Welcome ${sessionScope.user.name}</p>
-                        <a href="/app/redirect/logout">Logout</a>
+                        <p class="text-light">Welcome ${sessionScope.user.name}</p>
+                        <a class="nav-link text-light" href="/app/redirect/logout">Logout</a>
                     </c:if>
-                </div>
-            </div>
-        </header>
-    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
 

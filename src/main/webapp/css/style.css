@@ -1,89 +1,52 @@
-body a, h1, h2, h3, h4, h5, h6, p, input, button{
-    padding: 0;
-    margin: 0;
-}
 
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/*
-    Global
- */
-
-.content {
-    box-sizing: border-box;
+.wrapper {
     width: 80%;
-    margin: auto;
-}
-
-/*
-    Header
- */
-
-header {
-    width: 100%;
-    height: 80px;
-    background-color: #999797;
+    margin: 0 auto;
 }
 
 .logo {
-    float: left;
+    height: 60px;
     width: auto;
-    height: 74px;
-    margin: 3px 0 0 10px;
+    margin-right: 5px;
 }
 
-.header_right {
-    float: right;
+.main-content h3, h2, h1{
+    padding-top: 20px;
 }
 
-.header_right a {
-    color: white;
-    font-size: 24px;
-    margin: 20px 20px 0 0;
-    text-decoration: none;
+.genres_div button {
+    margin-top: 20px;
 }
 
-.header_right p {
-    color: white;
-    font-size: 24px;
-    margin: 10px 20px 0 0;
+.genres_div ul li a {
+    margin: 0;
 }
 
-/*
-    Content
- */
-
-.left_menu {
-    width: 20%;
-    border: #999797 1px solid;
-    float: left;
-    padding-left: 20px;
+.duration_div h3{
+    padding-top: 20px;
 }
 
-.remove_genre{
-    float: right;
-    padding-right: 30px;
+.duration_div button {
+    margin: 20px 0 20px 0;
 }
 
-.main_content {
-    width: 77%;
-    border: #999797 1px solid;
-    float: left;
-    padding-left: 8px;
+.music_track {
+    margin: 20px 40px 0 40px;
 }
 
-.track {
-    margin: 30px;
-    width: 250px;
-    height: 300px;
-    border: #999797 1px solid;
-    float: left;
+.music_track_image {
+    height: 150px;
+    width: auto;
 }
 
-.add_track_link {
-    float: left;
+.track_form button{
+    margin-top: 20px;
+}
+
+.track_form label {
+    margin-top: 10px;
+}
+
+.login_form button {
+    margin-top: 20px;
 }

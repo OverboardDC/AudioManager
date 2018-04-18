@@ -12,33 +12,38 @@
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>
-    <div class="content">
-        <jsp:include page="template/left_menu.jsp"/>
-        <section>
-            <div class="main_content">
-                <h2>Registration</h2>
-                <p style="color: red">${sessionScope.registrationError}</p>
-                <c:remove var="registrationError" scope="session"/>
-                <form method="post" action="app/redirect/registration">
+    <section>
+        <div class="row main-content">
+            <jsp:include page="template/left_menu.jsp"/>
+
+            <div class="col-md-9 bg-white">
+                <h2 class="text-center">Registration</h2>
+                <hr>
+
+                <form method="post" action="app/redirect/registration" class="col-md-6 track_form">
+                    <label style="color: red" class="input-group">${sessionScope.registrationError}</label>
+                    <c:remove var="registrationError" scope="session"/>
+
                     <p style="color: red">${sessionScope.username}</p>
                     <c:remove var="username" scope="session"/>
-                    <label>Username</label>
-                    <input name="username" placeholder="Username" type="text">
+                    <label class="font-weight-bold">Username</label>
+                    <input class="input-group" name="username" placeholder="Username" type="text">
 
                     <p style="color: red">${sessionScope.password}</p>
                     <c:remove var="password" scope="session"/>
-                    <label>Password</label>
-                    <input name="password" placeholder="Password" type="password">
+                    <label class="font-weight-bold">Password</label>
+                    <input class="input-group" name="password" placeholder="Password" type="password">
 
                     <p style="color: red">${sessionScope.password_confirm}</p>
                     <c:remove var="password_confirm" scope="session"/>
-                    <label>Confirm password</label>
-                    <input name="password_confirm" placeholder="Confirm password" type="password">
-                    <button>Submit</button>
+                    <label class="font-weight-bold">Confirm password</label>
+                    <input class="input-group" name="password_confirm" placeholder="Confirm password" type="password">
+                    <button class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
                 </form>
             </div>
-        </section>
-    </div>
+    </section>
+
 </div>
 </body>
 </html>

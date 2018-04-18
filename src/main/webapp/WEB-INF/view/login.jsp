@@ -12,23 +12,25 @@
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>
-    <div class="content">
-        <jsp:include page="template/left_menu.jsp"/>
-        <section>
-            <div class="main_content">
-                <h2>Login</h2>
-                <a href="/app/registrationPage">Create account</a>
-                <p style="color: red">${sessionScope.loginError}</p>
-                <c:remove var="loginError" scope="session"/>
-                <form method="post" action="app/redirect/login">
-                    <label>Username</label>
-                    <input placeholder="Username" type="text" name="username">
-                    <label>Password</label>
-                    <input placeholder="Password" type="password" name="password">
-                    <button>Login</button>
+    <section>
+        <div class="row main-content">
+            <jsp:include page="template/left_menu.jsp"/>
+
+            <div class="col-md-9 bg-white">
+                <h2 class="text-center">Login</h2>
+                <hr>
+                <form method="post" action="app/redirect/login" class="login_form col-md-6 offset-md-3 text-center">
+                    <label style="color: red">${sessionScope.loginError}</label>
+                    <c:remove var="loginError" scope="session"/>
+
+                    <input placeholder="Username" class="input-group" name="username">
+                    <input type="password" placeholder="Password" class="input-group" name="password">
+                    <a href="/app/registrationPage" class="input-group">Create account</a>
+                    <button class="btn btn-success">Login</button>
                 </form>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 </body>
 </html>

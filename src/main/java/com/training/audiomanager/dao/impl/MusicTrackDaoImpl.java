@@ -2,7 +2,9 @@ package com.training.audiomanager.dao.impl;
 
 import com.training.audiomanager.dao.MusicTrackDao;
 import com.training.audiomanager.dao.queries.MusicTrackDaoQueries;
+import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.MusicTrack;
+import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
@@ -11,26 +13,34 @@ import com.training.audiomanager.util.database.ConnectionFactory;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MusicTrackDaoImpl implements MusicTrackDao {
 
     @Override
     public List<MusicTrack> getAll() {
         List<MusicTrack> musicTracks = new ArrayList<>();
+        Map<String, Genre> uniqueGenres = new HashMap<>();
+        Map<String, Performer> uniquePerformers = new HashMap<>();
         String query = MusicTrackDaoQueries.GET_ALL_TRACKS;
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet rs = preparedStatement.executeQuery()) {
-
             while (rs.next()) {
-                musicTracks.add(buildTrackFromResultSet(rs));
+                Genre genre = buildGenreFromResultSet(rs);
+                uniqueGenres.putIfAbsent(genre.getName(), genre);
+                Performer performer = buildPerformerFromResultSet(rs);
+                uniquePerformers.putIfAbsent(performer.getName(), performer);
+                musicTracks.add(buildTrackFromResultSet(rs, uniqueGenres, uniquePerformers));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return musicTracks;
     }
+
 
     @Override
     public MusicTrack get(Long id) {
@@ -139,6 +149,8 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
     }
 
     private void getTracksByField(Long fieldId, List<MusicTrack> musicTracks, String query) {
+        Map<String, Genre> uniqueGenres = new HashMap<>();
+        Map<String, Performer> uniquePerformers = new HashMap<>();
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -146,26 +158,48 @@ public class MusicTrackDaoImpl implements MusicTrackDao {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    musicTracks.add(buildTrackFromResultSet(rs));
+                    Genre genre = buildGenreFromResultSet(rs);
+                    uniqueGenres.putIfAbsent(genre.getName(), genre);
+                    Performer performer = buildPerformerFromResultSet(rs);
+                    uniquePerformers.putIfAbsent(performer.getName(), performer);
+                    musicTracks.add(buildTrackFromResultSet(rs, uniqueGenres, uniquePerformers));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("G: "+uniqueGenres.size()+" P "+uniquePerformers.size());
     }
 
     private MusicTrack buildTrackFromResultSet(ResultSet rs) throws SQLException {
+        return getTrackBuilder(rs).buildGenre(buildGenreFromResultSet(rs))
+                .buildPerformer(buildPerformerFromResultSet(rs)).buildMusicTrack();
+    }
+
+    private MusicTrack buildTrackFromResultSet(ResultSet rs, Map<String, Genre> genreMap, Map<String, Performer> performerMap) throws SQLException{
+        return getTrackBuilder(rs).buildGenre(genreMap.get(rs.getString("g.name")))
+                .buildPerformer(performerMap.get(rs.getString("p.name"))).buildMusicTrack();
+
+    }
+
+    private MusicTrackBuilder getTrackBuilder(ResultSet rs) throws SQLException {
         return new MusicTrackBuilder().buildId(rs.getLong(1)).
-                buildPerformer(new PerformerBuilder().buildId(rs.getLong("p.id")).
-                        buildName(rs.getString("p.name")).buildPerformer())
-                .buildGenre(new GenreBuilder().buildId(rs.getLong("g.id")).
-                        buildName(rs.getString("g.name")).buildGenre()).
-                        buildAlbum(rs.getString(4)).
-                        buildName(rs.getString(5)).
-                        buildDuration(rs.getInt(6)).
-                        buildCreatingDateTime(LocalDateTime.
-                                of(rs.getDate(7).toLocalDate(),
-                                        rs.getTime(7).toLocalTime())).buildMusicTrack();
+                buildAlbum(rs.getString(4)).
+                buildName(rs.getString(5)).
+                buildDuration(rs.getInt(6)).
+                buildCreatingDateTime(LocalDateTime.
+                        of(rs.getDate(7).toLocalDate(),
+                                rs.getTime(7).toLocalTime()));
+    }
+
+    private Genre buildGenreFromResultSet(ResultSet rs) throws SQLException {
+        return new GenreBuilder().buildId(rs.getLong("g.id"))
+                .buildName(rs.getString("g.name")).buildGenre();
+    }
+
+    private Performer buildPerformerFromResultSet(ResultSet rs) throws SQLException {
+        return new PerformerBuilder().buildId(rs.getLong("p.id")).
+                buildName(rs.getString("p.name")).buildPerformer();
     }
 
 }

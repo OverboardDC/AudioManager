@@ -12,15 +12,18 @@
 <body>
 <div class="wrapper">
     <jsp:include page="template/header.jsp"/>
-    <div class="content">
-        <jsp:include page="template/left_menu.jsp"/>
-        <section>
-            <div class="main_content">
-                <h1>Error</h1>
-                <p>Some problem has happened</p>
+    <section>
+        <div class="row main-content">
+            <jsp:include page="template/left_menu.jsp"/>
+
+            <div class="col-md-9 bg-white text-center">
+                <h2 class="text-center">Error</h2>
+                <hr>
+                <p>Something went wrong...</p>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
 </div>
 </body>
 </html>
