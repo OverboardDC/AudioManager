@@ -39,7 +39,7 @@ public class Registration implements Command {
             request.getSession().setAttribute(AttributeConstants.PASSWORD_CONFIRM, ValidationConstants.PASSWORDS_DONT_MATCH);
             return PageConstants.REGISTRATION_PAGE_REDIRECT;
         }
-        if(!inputUtil.isValid()){
+        if(inputUtil.isValidationFailed()){
             return  PageConstants.REGISTRATION_PAGE_REDIRECT;
         }
 

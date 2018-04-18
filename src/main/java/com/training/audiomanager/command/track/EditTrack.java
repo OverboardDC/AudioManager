@@ -31,12 +31,12 @@ public class EditTrack implements Command {
         InputUtil inputUtil = new InputUtil();
         Long musicTrackId = Long.valueOf(request.getParameter(ParameterConstants.ID));
         String performerName = inputUtil.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
-        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID);
+        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
         String album = inputUtil.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
         String name = inputUtil.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
-        int duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION);
+        int duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
 
-        if (!inputUtil.isValid()) {
+        if (inputUtil.isValidationFailed()) {
             return PageConstants.EDIT_TRACK_PAGE_REDIRECT + "?id=" + musicTrackId;
         }
 

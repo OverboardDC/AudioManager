@@ -8,6 +8,7 @@ import com.training.audiomanager.util.constants.AttributeConstants;
 import com.training.audiomanager.util.InputUtil;
 import com.training.audiomanager.util.constants.PageConstants;
 import com.training.audiomanager.util.constants.ParameterConstants;
+import com.training.audiomanager.util.constants.RegexConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,9 +26,9 @@ public class GetTracksByDuration implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         InputUtil inputUtil = new InputUtil();
-        int min = inputUtil.inputIntValue(request, ParameterConstants.MIN);
-        int max = inputUtil.inputIntValue(request, ParameterConstants.MAX);
-        if (!inputUtil.isValid()) {
+        int min = inputUtil.inputIntValue(request, ParameterConstants.MIN, RegexConstants.NUMBER_REGEX);
+        int max = inputUtil.inputIntValue(request, ParameterConstants.MAX, RegexConstants.NUMBER_REGEX);
+        if (inputUtil.isValidationFailed()) {
             return PageConstants.INDEX_REDIRECT;
         }
         List<MusicTrack> musicTracks = musicTrackService.getTracksByDuration(min, max);

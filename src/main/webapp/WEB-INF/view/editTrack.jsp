@@ -25,9 +25,8 @@
                     <c:remove var="genre_id" scope="session"/>
                     <label class="font-weight-bold">Genre:</label>
                     <select name="genre_id" title="genre" class="input-group">
-                        <option value="${requestScope.track.genre.id}" selected>${requestScope.track.genre.name}</option>
                         <c:forEach items="${requestScope.genres}" var="genre">
-                            <option value="${genre.id}">${genre.name}</option>
+                            <option value="${genre.id}" ${requestScope.track.genre.id == genre.id ? 'selected' : ''}>${genre.name}</option>
                         </c:forEach>
                     </select>
 

@@ -31,11 +31,11 @@ public class AddTrack implements Command {
     public String execute(HttpServletRequest request) {
         InputUtil inputUtil = new InputUtil();
         String performerName = inputUtil.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
-        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID);
+        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
         String album = inputUtil.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
         String name = inputUtil.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
-        int duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION);
-        if (!inputUtil.isValid()) {
+        Integer duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
+        if (inputUtil.isValidationFailed()) {
             return PageConstants.ADD_TRACK_PAGE_REDIRECT;
         }
 

@@ -3,13 +3,13 @@ package com.training.audiomanager.util;
 import com.training.audiomanager.util.constants.ValidationConstants;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
-//TODO refactor
 public class InputUtil {
 
     private boolean valid = true;
 
-    public String inputStringValue(HttpServletRequest request, String param, String regex){
+    public String inputStringValue(HttpServletRequest request, String param, String regex) {
         String value = request.getParameter(param);
         if (!ValidationUtil.isValid(value, regex)) {
             valid = validationFailed(request, param, ValidationConstants.INCORRECT_INPUT);
@@ -17,7 +17,7 @@ public class InputUtil {
         return value;
     }
 
-    public String inputStringValue(HttpServletRequest request, String param, String regex, String message){
+    public String inputStringValue(HttpServletRequest request, String param, String regex, String message) {
         String value = request.getParameter(param);
         if (!ValidationUtil.isValid(value, regex)) {
             valid = validationFailed(request, param, message);
@@ -25,24 +25,22 @@ public class InputUtil {
         return value;
     }
 
-    public Long inputLongValue(HttpServletRequest request, String param){
-        Long value = 0L;
-        try {
-            value = Long.valueOf(request.getParameter(param));
-        } catch (NumberFormatException e){
+    public Long inputLongValue(HttpServletRequest request, String param, String regex) {
+        Optional<String> value = Optional.of(request.getParameter(param));
+        if(!value.isPresent() || !ValidationUtil.isValid(value.get(), regex)){
             valid = validationFailed(request, param, ValidationConstants.INCORRECT_INPUT);
+            return 0L;
         }
-        return value;
+        return Long.parseLong(value.get());
     }
 
-    public int inputIntValue(HttpServletRequest request, String param){
-        int value = 0;
-        try {
-            value = Integer.valueOf(request.getParameter(param));
-        } catch (NumberFormatException e){
+    public int inputIntValue(HttpServletRequest request, String param, String regex) {
+        Optional<String> value = Optional.of(request.getParameter(param));
+        if(!value.isPresent() || !ValidationUtil.isValid(value.get(), regex)){
             valid = validationFailed(request, param, ValidationConstants.INCORRECT_INPUT);
+            return 0;
         }
-        return value;
+        return Integer.parseInt(value.get());
     }
 
     private boolean validationFailed(HttpServletRequest request, String attributeName, String message) {
@@ -50,7 +48,7 @@ public class InputUtil {
         return false;
     }
 
-    public boolean isValid() {
-        return valid;
+    public boolean isValidationFailed() {
+        return !valid;
     }
 }

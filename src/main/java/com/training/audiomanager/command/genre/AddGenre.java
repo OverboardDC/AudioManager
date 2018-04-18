@@ -24,7 +24,7 @@ public class AddGenre implements Command {
         InputUtil inputUtil = new InputUtil();
 
         String genreName = inputUtil.inputStringValue(request, ParameterConstants.GENRE_NAME, RegexConstants.NAME_REGEX);
-        if(!inputUtil.isValid()){
+        if(inputUtil.isValidationFailed()){
             return PageConstants.INDEX_REDIRECT;
         }
         Genre genre = new GenreBuilder().buildName(genreName).buildGenre();

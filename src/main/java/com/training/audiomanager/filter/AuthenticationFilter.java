@@ -20,15 +20,16 @@ public class AuthenticationFilter implements Filter {
     }
 
     @Override
-    //TODO optimize
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        User user = (User) request.getSession().getAttribute(AttributeConstants.USER);
         String url = request.getRequestURI().replaceAll(".*" + GlobalConstants.APP_ROOT_CATALOG, "");
-        if (url.contains(GlobalConstants.ADMIN_URL_PATTERN) && !LoginUtil.isAdmin(user)) {
-            response.sendRedirect(PageConstants.LOGIN_PAGE_REDIRECT);
-            return;
+        if(url.contains(GlobalConstants.ADMIN_URL_PATTERN)) {
+            User user = (User) request.getSession().getAttribute(AttributeConstants.USER);
+            if (!LoginUtil.isAdmin(user)) {
+                response.sendRedirect(PageConstants.LOGIN_PAGE_REDIRECT);
+                return;
+            }
         }
         filterChain.doFilter(request, servletResponse);
     }
