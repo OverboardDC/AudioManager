@@ -14,7 +14,7 @@
                     <a class="btn btn-primary" href="/app/admin/addTrackPage">Add new</a>
                 </c:if>
                 <hr>
-                <div class="row">
+                <div class="row justify-content-start">
                     <c:forEach items="${requestScope.tracks}" var="track">
                         <div class="col-md-3 bg-light text-center music_track">
                             <h3>${track.name}</h3>
