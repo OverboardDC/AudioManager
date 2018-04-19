@@ -2,6 +2,8 @@ package com.training.audiomanager.entity;
 
 import com.training.audiomanager.util.constants.GlobalConstants;
 
+import java.util.Optional;
+
 public class User {
 
     private Long id;
@@ -17,7 +19,7 @@ public class User {
     }
 
     public Long getId() {
-        return id;
+        return Optional.of(id).get();
     }
 
     public void setId(Long id) {

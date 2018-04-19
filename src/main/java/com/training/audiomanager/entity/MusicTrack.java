@@ -2,6 +2,7 @@ package com.training.audiomanager.entity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 public class MusicTrack {
 
@@ -10,10 +11,10 @@ public class MusicTrack {
     private Genre genre;
     private String album;
     private String name;
-    private int duration;
+    private Integer duration;
     private LocalDateTime creatingDateTime;
 
-    public MusicTrack(Long id, Performer performer, Genre genre, String album, String name, int duration, LocalDateTime creatingDateTime) {
+    public MusicTrack(Long id, Performer performer, Genre genre, String album, String name, Integer duration, LocalDateTime creatingDateTime) {
         this.id = id;
         this.performer = performer;
         this.genre = genre;
@@ -31,7 +32,7 @@ public class MusicTrack {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = Optional.of(id).get();
     }
 
     public Performer getPerformer() {
@@ -66,12 +67,12 @@ public class MusicTrack {
         this.name = name;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDuration(Integer duration) {
+        this.duration = Optional.of(duration).get();
     }
 
     public LocalDateTime getCreatingDateTime() {

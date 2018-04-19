@@ -1,6 +1,7 @@
 package com.training.audiomanager.entity;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Genre {
 
@@ -16,7 +17,7 @@ public class Genre {
     }
 
     public Long getId() {
-        return id;
+        return Optional.of(id).get();
     }
 
     public void setId(Long id) {

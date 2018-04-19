@@ -1,6 +1,7 @@
 package com.training.audiomanager.entity;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Performer {
 
@@ -20,7 +21,7 @@ public class Performer {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = Optional.of(id).get();
     }
 
     public String getName() {

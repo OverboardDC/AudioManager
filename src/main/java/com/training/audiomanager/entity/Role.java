@@ -1,5 +1,7 @@
 package com.training.audiomanager.entity;
 
+import java.util.Optional;
+
 public class Role {
 
     private Long id;
@@ -13,7 +15,7 @@ public class Role {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = Optional.of(id).get();
     }
 
     public String getName() {

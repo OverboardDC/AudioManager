@@ -4,6 +4,7 @@ import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.GenreBuilder;
+import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
 import com.training.audiomanager.service.impl.MusicTrackServiceImpl;
 import org.junit.BeforeClass;
@@ -34,6 +35,16 @@ public class MusicTrackServiceImplTest {
         int startSize = musicTrackService.getAll().size();
         musicTrackService.add(testTrack);
         assertTrue(musicTrackService.getAll().size() == startSize + 1);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void durationNullCaseTest(){
+        MusicTrack musicTrack = new MusicTrackBuilder().buildDuration(null).buildMusicTrack();
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void idNullCaseTest(){
+        MusicTrack musicTrack = new MusicTrackBuilder().buildId(null).buildMusicTrack();
     }
 
 }

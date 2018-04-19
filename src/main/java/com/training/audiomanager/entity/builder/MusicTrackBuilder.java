@@ -39,7 +39,7 @@ public class MusicTrackBuilder {
         return this;
     }
 
-    public MusicTrackBuilder buildDuration(int duration){
+    public MusicTrackBuilder buildDuration(Integer duration){
         musicTrack.setDuration(duration);
         return this;
     }
