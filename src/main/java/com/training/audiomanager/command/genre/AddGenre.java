@@ -4,7 +4,7 @@ import com.training.audiomanager.command.Command;
 import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.service.GenreService;
-import com.training.audiomanager.util.InputUtil;
+import com.training.audiomanager.service.util.InputValidator;
 import com.training.audiomanager.util.constants.PageConstants;
 import com.training.audiomanager.util.constants.ParameterConstants;
 import com.training.audiomanager.util.constants.RegexConstants;
@@ -21,10 +21,10 @@ public class AddGenre implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        InputUtil inputUtil = new InputUtil();
+        InputValidator inputValidator = new InputValidator();
 
-        String genreName = inputUtil.inputStringValue(request, ParameterConstants.GENRE_NAME, RegexConstants.NAME_REGEX);
-        if(inputUtil.isValidationFailed()){
+        String genreName = inputValidator.inputStringValue(request, ParameterConstants.GENRE_NAME, RegexConstants.NAME_REGEX);
+        if(inputValidator.isValidationFailed()){
             return PageConstants.INDEX_REDIRECT;
         }
         Genre genre = new GenreBuilder().buildName(genreName).buildGenre();

@@ -11,7 +11,7 @@
         <div class="row">
             <nav class="navbar bg-dark col">
                 <a href="/app/" class="navbar-brand text-light"><img src="${pageContext.request.contextPath}/img/logo.jpg" alt="logo" class="logo">
-                    Audio Manager</a>
+                    Аудио</a>
 
                 <ul class="navbar-nav">
                     <c:if test="${sessionScope.user == null}">

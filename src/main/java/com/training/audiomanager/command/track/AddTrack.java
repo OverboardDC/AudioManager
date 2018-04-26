@@ -6,7 +6,7 @@ import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.service.*;
-import com.training.audiomanager.util.InputUtil;
+import com.training.audiomanager.service.util.InputValidator;
 import com.training.audiomanager.util.constants.PageConstants;
 import com.training.audiomanager.util.constants.ParameterConstants;
 import com.training.audiomanager.util.constants.RegexConstants;
@@ -29,13 +29,13 @@ public class AddTrack implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        InputUtil inputUtil = new InputUtil();
-        String performerName = inputUtil.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
-        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
-        String album = inputUtil.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
-        String name = inputUtil.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
-        Integer duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
-        if (inputUtil.isValidationFailed()) {
+        InputValidator inputValidator = new InputValidator();
+        String performerName = inputValidator.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
+        Long genreId = inputValidator.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
+        String album = inputValidator.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
+        String name = inputValidator.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
+        Integer duration = inputValidator.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
+        if (inputValidator.isValidationFailed()) {
             return PageConstants.ADD_TRACK_PAGE_REDIRECT;
         }
 

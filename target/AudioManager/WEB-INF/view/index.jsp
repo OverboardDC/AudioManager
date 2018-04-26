@@ -18,15 +18,28 @@
                     <c:forEach items="${requestScope.tracks}" var="track">
                         <div class="col-md-3 bg-light text-center music_track">
                             <h3>${track.name}</h3>
-                            <img class="music_track_image " src="${pageContext.request.contextPath}/img/music_track.png">
+                            <img class="music_track_image "
+                                 src="${pageContext.request.contextPath}/img/music_track.png">
                             <h5>Album: </h5>
                             <p>${track.album}</p>
                             <h5>Performer: </h5>
+                            <c:url value="/app/getTracksByPerformer" var="getByPerformer">
+                                <c:param name="id" value="${track.performer.id}"/>
+                                <c:if test="${requestScope.page != null}">
+                                    <c:param name="page" value="${requestScope.page}"/>
+                                </c:if>
+                            </c:url>
                             <a class="text-dark"
-                               href="/app/getTracksByPerformer?id=${track.performer.id}">${track.performer.name}</a>
+                               href="${getByPerformer}">${track.performer.name}</a>
                             <h5>Genre: </h5>
+                            <c:url value="/app/getTracksByGenre" var="getByGenre">
+                                <c:param name="id" value="${track.genre.id}"/>
+                                <c:if test="${requestScope.page != null}">
+                                    <c:param name="page" value="${requestScope.page}"/>
+                                </c:if>
+                            </c:url>
                             <a class="text-dark"
-                               href="/app/getTracksByGenre?id=${track.genre.id}">${track.genre.name}</a>
+                               href="${getByGenre}">${track.genre.name}</a>
                             <h5>Duration: </h5>
                             <p>${track.duration}</p>
                             <h5>Creation date:</h5>
@@ -41,6 +54,33 @@
                         </div>
                     </c:forEach>
                 </div>
+                <c:if test="${!requestScope.tracks.isEmpty()}">
+                    <div class="row justify-content-center">
+                        <ul class="pagination">
+                            <c:forEach var="page" items="${requestScope.pages}">
+                                <c:url value="" var="changePage">
+                                    <c:param name="page" value="${page}"/>
+                                    <c:if test="${requestScope.last_genre_id != null}">
+                                        <c:param name="id" value="${requestScope.last_genre_id}"/>
+                                    </c:if>
+                                    <c:if test="${requestScope.last_performer_id != null}">
+                                        <c:param name="id" value="${requestScope.last_performer_id}"/>
+                                    </c:if>
+                                    <c:if test="${requestScope.last_min_duration != null && requestScope.last_max_duration != null}">
+                                        <c:param name="min" value="${requestScope.last_min_duration}"/>
+                                        <c:param name="max" value="${requestScope.last_max_duration}"/>
+                                    </c:if>
+                                </c:url>
+                                <c:if test="${requestScope.current_page == page}">
+                                    <li class="page-item"><a class="page-link alert-info" href="${changePage}">${page}</a></li>
+                                </c:if>
+                                <c:if test="${requestScope.current_page != page}">
+                                    <li class="page-item"><a class="page-link" href="${changePage}">${page}</a></li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:if>
             </div>
         </div>
     </section>

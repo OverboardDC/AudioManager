@@ -1,7 +1,7 @@
 package com.training.audiomanager.dao.impl;
 
 import com.training.audiomanager.dao.UserDao;
-import com.training.audiomanager.dao.queries.UserDaoQueries;
+import com.training.audiomanager.dao.constants.queries.UserDaoQueries;
 import com.training.audiomanager.entity.Role;
 import com.training.audiomanager.entity.User;
 import com.training.audiomanager.entity.builder.RoleBuilder;
@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 //TODO Create user dao
 public class UserDaoImpl implements UserDao {

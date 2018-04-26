@@ -1,4 +1,4 @@
-package com.training.audiomanager.dao.queries;
+package com.training.audiomanager.dao.constants.queries;
 
 public interface UserDaoQueries {
 

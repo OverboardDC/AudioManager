@@ -6,7 +6,7 @@ import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.MusicTrackBuilder;
 import com.training.audiomanager.service.*;
-import com.training.audiomanager.util.InputUtil;
+import com.training.audiomanager.service.util.InputValidator;
 import com.training.audiomanager.util.constants.PageConstants;
 import com.training.audiomanager.util.constants.ParameterConstants;
 import com.training.audiomanager.util.constants.RegexConstants;
@@ -28,15 +28,15 @@ public class EditTrack implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        InputUtil inputUtil = new InputUtil();
+        InputValidator inputValidator = new InputValidator();
         Long musicTrackId = Long.valueOf(request.getParameter(ParameterConstants.ID));
-        String performerName = inputUtil.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
-        Long genreId = inputUtil.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
-        String album = inputUtil.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
-        String name = inputUtil.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
-        int duration = inputUtil.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
+        String performerName = inputValidator.inputStringValue(request, ParameterConstants.PERFORMER, RegexConstants.NAME_REGEX);
+        Long genreId = inputValidator.inputLongValue(request, ParameterConstants.GENRE_ID, RegexConstants.NUMBER_REGEX);
+        String album = inputValidator.inputStringValue(request, ParameterConstants.ALBUM, RegexConstants.NAME_REGEX);
+        String name = inputValidator.inputStringValue(request, ParameterConstants.NAME, RegexConstants.NAME_REGEX);
+        int duration = inputValidator.inputIntValue(request, ParameterConstants.DURATION, RegexConstants.NUMBER_REGEX);
 
-        if (inputUtil.isValidationFailed()) {
+        if (inputValidator.isValidationFailed()) {
             return PageConstants.EDIT_TRACK_PAGE_REDIRECT + "?id=" + musicTrackId;
         }
 

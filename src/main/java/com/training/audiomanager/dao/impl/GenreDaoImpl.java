@@ -1,7 +1,7 @@
 package com.training.audiomanager.dao.impl;
 
 import com.training.audiomanager.dao.GenreDao;
-import com.training.audiomanager.dao.queries.GenreDaoQueries;
+import com.training.audiomanager.dao.constants.queries.GenreDaoQueries;
 import com.training.audiomanager.entity.Genre;
 import com.training.audiomanager.entity.builder.GenreBuilder;
 import com.training.audiomanager.util.database.ConnectionFactory;

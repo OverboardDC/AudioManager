@@ -13,7 +13,13 @@
             <ul class="list-group list-group-flush">
                 <c:forEach items="${requestScope.genres}" var="genre">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="text-dark" href="/app/getTracksByGenre?id=${genre.id}">${genre.name}</a>
+                        <c:url value="/app/getTracksByGenre" var="getByGenre">
+                            <c:param name="id" value="${genre.id}"/>
+                            <c:if test="${requestScope.page != null}">
+                                <c:param name="page" value="${requestScope.page}"/>
+                            </c:if>
+                        </c:url>
+                        <a class="text-dark" href="${getByGenre}">${genre.name}</a>
                         <c:if test="${sessionScope.user.admin}">
                             <a class="badge badge-danger"
                                href="app/redirect/admin/removeGenre?id=${genre.id}">Remove</a>
@@ -34,7 +40,8 @@
         <hr>
         <div class="duration_div">
             <h3>Set duration</h3>
-            <form action="/app/getTracksByDuration" method="get">
+            <c:url value="/app/getTracksByDuration" var="getByDuration"/>
+            <form action="${getByDuration}" method="get">
 
                 <label style="color: red">${sessionScope.min}</label>
                 <c:remove var="min" scope="session"/>

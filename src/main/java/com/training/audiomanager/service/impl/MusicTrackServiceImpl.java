@@ -3,6 +3,7 @@ package com.training.audiomanager.service.impl;
 import com.training.audiomanager.dao.impl.MusicTrackDaoImpl;
 import com.training.audiomanager.entity.MusicTrack;
 import com.training.audiomanager.service.MusicTrackService;
+import com.training.audiomanager.service.util.Pagination;
 
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class MusicTrackServiceImpl implements MusicTrackService {
     @Override
     public List<MusicTrack> getAll() {
         return musicTrackDaoImpl.getAll();
+    }
+
+    @Override
+    public List<MusicTrack> getAll(Pagination pagination) {
+        return musicTrackDaoImpl.getAll(pagination);
     }
 
     @Override
@@ -39,18 +45,19 @@ public class MusicTrackServiceImpl implements MusicTrackService {
         musicTrackDaoImpl.remove(id);
     }
 
+
     @Override
-    public List<MusicTrack> getTracksByGenre(Long genreId) {
-        return musicTrackDaoImpl.getTracksByGenre(genreId);
+    public List<MusicTrack> getTracksByGenre(Long genreId, Pagination pagination) {
+        return musicTrackDaoImpl.getTracksByGenre(genreId, pagination);
     }
 
     @Override
-    public List<MusicTrack> getTracksByPerformer(Long performerId) {
-        return musicTrackDaoImpl.getTracksByPerformer(performerId);
+    public List<MusicTrack> getTracksByPerformer(Long performerId, Pagination pagination) {
+        return musicTrackDaoImpl.getTracksByPerformer(performerId, pagination);
     }
 
     @Override
-    public List<MusicTrack> getTracksByDuration(int min, int max) {
-        return musicTrackDaoImpl.getTracksByDuration(min, max);
+    public List<MusicTrack> getTracksByDuration(int min, int max, Pagination pagination) {
+        return musicTrackDaoImpl.getTracksByDuration(min, max, pagination);
     }
 }

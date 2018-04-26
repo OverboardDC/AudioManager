@@ -18,4 +18,6 @@ public interface ParameterConstants {
     String USERNAME = "username";
     String PASSWORD = "password";
     String PASSWORD_CONFIRM = "password_confirm";
+
+    String PAGE = "page";
 }

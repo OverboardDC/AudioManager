@@ -1,4 +1,4 @@
-package com.training.audiomanager.dao.queries;
+package com.training.audiomanager.dao.constants.queries;
 
 public interface MusicTrackDaoQueries {
 
@@ -27,4 +27,9 @@ public interface MusicTrackDaoQueries {
     String GET_TRACKS_BY_PERFORMER = "SELECT * FROM musictrack" +
             " INNER JOIN performer p ON musictrack.performer_id = p.id" +
             " INNER JOIN genre g ON musictrack.genre_id = g.id WHERE p.id = ?";
+
+    String GET_COUNT_ALL = "SELECT COUNT(*) from musictrack";
+    String GET_COUNT_BY_GENRE = "SELECT COUNT(*) FROM musictrack WHERE genre_id = ?";
+    String GET_COUNT_BY_PERFORMER = "SELECT COUNT(*) FROM musictrack WHERE performer_id = ?";
+    String GET_COUNT_BY_DURATION = "SELECT COUNT(*) FROM musictrack WHERE duration BETWEEN ? AND ?";
 }

@@ -24,19 +24,19 @@
                     <label style="color: red" class="input-group">${sessionScope.registrationError}</label>
                     <c:remove var="registrationError" scope="session"/>
 
+                    <label class="font-weight-bold">Username</label>
                     <p style="color: red">${sessionScope.username}</p>
                     <c:remove var="username" scope="session"/>
-                    <label class="font-weight-bold">Username</label>
                     <input class="input-group" name="username" placeholder="Username" type="text">
 
+                    <label class="font-weight-bold">Password</label>
                     <p style="color: red">${sessionScope.password}</p>
                     <c:remove var="password" scope="session"/>
-                    <label class="font-weight-bold">Password</label>
                     <input class="input-group" name="password" placeholder="Password" type="password">
 
+                    <label class="font-weight-bold">Confirm password</label>
                     <p style="color: red">${sessionScope.password_confirm}</p>
                     <c:remove var="password_confirm" scope="session"/>
-                    <label class="font-weight-bold">Confirm password</label>
                     <input class="input-group" name="password_confirm" placeholder="Confirm password" type="password">
                     <button class="btn btn-success">Submit</button>
                     <button type="reset" class="btn btn-danger">Reset</button>

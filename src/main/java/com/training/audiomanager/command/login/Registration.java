@@ -6,7 +6,7 @@ import com.training.audiomanager.entity.User;
 import com.training.audiomanager.entity.builder.RoleBuilder;
 import com.training.audiomanager.entity.builder.UserBuilder;
 import com.training.audiomanager.service.UserService;
-import com.training.audiomanager.util.InputUtil;
+import com.training.audiomanager.service.util.InputValidator;
 import com.training.audiomanager.util.constants.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +22,11 @@ public class Registration implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        InputUtil inputUtil = new InputUtil();
-        String username = inputUtil.inputStringValue(request, ParameterConstants.USERNAME,
+        InputValidator inputValidator = new InputValidator();
+        String username = inputValidator.inputStringValue(request, ParameterConstants.USERNAME,
                 RegexConstants.USERNAME_REGEX, ValidationConstants.INVALID_USERNAME);
 
-        String password = inputUtil.inputStringValue(request, ParameterConstants.PASSWORD,
+        String password = inputValidator.inputStringValue(request, ParameterConstants.PASSWORD,
                 RegexConstants.PASSWORD_REGEX, ValidationConstants.INVALID_PASSWORD);
 
         String passwordConfirm = request.getParameter(ParameterConstants.PASSWORD_CONFIRM);
@@ -39,7 +39,7 @@ public class Registration implements Command {
             request.getSession().setAttribute(AttributeConstants.PASSWORD_CONFIRM, ValidationConstants.PASSWORDS_DONT_MATCH);
             return PageConstants.REGISTRATION_PAGE_REDIRECT;
         }
-        if(inputUtil.isValidationFailed()){
+        if(inputValidator.isValidationFailed()){
             return  PageConstants.REGISTRATION_PAGE_REDIRECT;
         }
 

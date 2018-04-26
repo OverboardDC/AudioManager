@@ -1,7 +1,7 @@
 package com.training.audiomanager.dao.impl;
 
 import com.training.audiomanager.dao.PerformerDao;
-import com.training.audiomanager.dao.queries.PerformerDaoQueries;
+import com.training.audiomanager.dao.constants.queries.PerformerDaoQueries;
 import com.training.audiomanager.entity.Performer;
 import com.training.audiomanager.entity.builder.PerformerBuilder;
 import com.training.audiomanager.util.database.ConnectionFactory;

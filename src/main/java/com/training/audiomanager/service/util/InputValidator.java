@@ -1,11 +1,12 @@
-package com.training.audiomanager.util;
+package com.training.audiomanager.service.util;
 
+import com.training.audiomanager.util.ValidationUtil;
 import com.training.audiomanager.util.constants.ValidationConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-public class InputUtil {
+public class InputValidator {
 
     private boolean valid = true;
 
