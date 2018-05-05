@@ -28,6 +28,7 @@ public class Login implements Command {
             request.getSession().setAttribute(AttributeConstants.LOGIN_ERROR, ValidationConstants.LOGIN_FAILED);
             return PageConstants.LOGIN_PAGE_REDIRECT;
         }
+
         request.getSession().setAttribute(AttributeConstants.USER, user.get());
         return PageConstants.INDEX_REDIRECT;
     }
